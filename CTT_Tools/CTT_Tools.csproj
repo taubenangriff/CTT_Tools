@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <Reference Include="FileDBSerializer">
-      <HintPath>..\..\..\..\Downloads\FileDBReader\FileDBSerializer\FileDBSerializer.dll</HintPath>
+      <HintPath>lib\FileDBSerializer.dll</HintPath>
     </Reference>
   </ItemGroup>
 
