@@ -22,7 +22,7 @@ namespace CTT_Tools.src
 
         internal static Bitmap ToBitmap(Stream s, int width, int height, ReadMethod read, int bpp)
         { 
-            Bitmap map = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            Bitmap map = new Bitmap(height, width, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
             if (s.Length < width * height * bpp) throw new ArgumentException("the length of the stream must at least be as large as width * height of your image!");
             else if (s.Length > width * height * bpp) Console.WriteLine("Too large stream. excess Bytes are ignored.");
@@ -31,8 +31,8 @@ namespace CTT_Tools.src
             BinaryReader reader = new BinaryReader(s);
             while (reader.BaseStream.Position < reader.BaseStream.Length && reader.BaseStream.Position < width * height * bpp)
             {
-                int x = (int)s.Position / (width * bpp);
-                int y = (int)s.Position / bpp % height;
+                int x = (int)s.Position / bpp % height;
+                int y = (int)s.Position / (width * bpp);
                 byte ColorValue = read(ref reader);
                     
                 map.SetPixel(x, y, Color.FromArgb(255, ColorValue, ColorValue, ColorValue));
